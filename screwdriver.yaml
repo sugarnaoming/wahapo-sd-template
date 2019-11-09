@@ -1,0 +1,27 @@
+shared:
+    image: node:6
+    environment:
+        TEMPLATE_NAME: wahapo/test
+
+jobs:
+    main:
+        requires: [~pr, ~commit]
+        steps:
+            - install: npm install screwdriver-template-main
+            - validate: ./node_modules/.bin/template-validate
+    publish:
+        requires: [main]
+        steps:
+            - install: npm install screwdriver-template-main
+            - publish: ./node_modules/.bin/template-publish
+            - autotag: ./node_modules/.bin/template-tag --name $TEMPLATE_NAME --tag latest
+            - tag: ./node_modules/.bin/template-tag --name $TEMPLATE_NAME --version latest --tag stable
+
+    remove:
+        steps:
+            - install: npm install screwdriver-template-main
+            - remove: ./node_modules/.bin/template-remove --name $TEMPLATE_NAME
+    remove_tag:
+        steps:
+            - install: npm install screwdriver-template-main
+            - remove_tag: ./node_modules/.bin/template-remove-tag --name $TEMPLATE_NAME --tag stable
