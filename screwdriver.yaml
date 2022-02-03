@@ -7,14 +7,14 @@ jobs:
     main:
         requires: [~pr, ~commit]
         steps:
-            - install: npm install screwdriver-template-main
-            - validate: ./node_modules/.bin/template-validate
+            - install: npm install -g screwdriver-template-main
+            - validate: template-validate
     publish:
         requires: [main]
         steps:
-            - install: npm install screwdriver-template-main
-            - publish: ./node_modules/.bin/template-publish
-            - autotag: ./node_modules/.bin/template-tag --name $TEMPLATE_NAME --tag latest
+            - install: npm install -g screwdriver-template-main
+            - publish: template-publish
+            - autotag: template-tag --name screwdriver-examples/parameters-example --tag latest
             - tag: ./node_modules/.bin/template-tag --name $TEMPLATE_NAME --version latest --tag stable
 
     remove:
