@@ -4,9 +4,10 @@ version: '0.0'
 description: template for testing
 maintainer: foo@bar.com
 images:
-    stable-image: node:6
-    latest-image: node:8
+    stable-image: node:14
+    latest-image: node:16
 config:
-    image: node:6
+    template: screwdriver-examples/parameters-example@latest
+    image: node:14
     steps:
         - ls: ls
