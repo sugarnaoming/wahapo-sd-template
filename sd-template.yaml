@@ -1,5 +1,5 @@
 namespace: wahapo
-name: test
+name: template-test
 version: '0.0'
 description: template for testing
 maintainer: foo@bar.com
