@@ -1,7 +1,7 @@
 shared:
     image: node:12
     environment:
-        TEMPLATE_NAME: wahapo/test
+        TEMPLATE_NAME: sugarnaoming/test
 
 jobs:
     main:
